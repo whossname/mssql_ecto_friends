@@ -4,21 +4,13 @@ A sample application demonstrating [MssqlEcto](https://github.com/findmypast-oss
 
 Based on: https://github.com/elixir-ecto/ecto/tree/master/examples/friends
 
-## Installation
+## Setup
 
-Install Docker Compose: https://docs.docker.com/compose/install
-
-Build containers, Elixir and MS SQL:
+Requires Docker to be installed.
 
 ```bash
-$ docker-compose build
-$ docker-compose up
-```
-
-In separate terminal:
-
-```bash
-$ docker-compose mix setup
+./setup_db.sh
+mix setup
 ```
 
 Interact with iex:

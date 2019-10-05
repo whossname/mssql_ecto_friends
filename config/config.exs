@@ -6,15 +6,18 @@ use Mix.Config
 config :friends, ecto_repos: [Friends.Repo]
 
 config :friends, Friends.Repo,
-  adapter:       MssqlEcto,
-  database:      "friends_repo",
-  username:      "sa",
-  password:      "reallyStrongPwd123",
-  hostname:      "mssql_db",
+  adapter: MssqlEcto,
+  # required
+  database: "friends_repo",
+  username: "sa",
+  password: "reallyStrongPwd123",
+  hostname: "localhost",
+
+  # optional
   instance_name: "MSSQLSERVER",
-  port:          "1433",
-  pool_size:     10,
-  odbc_driver:   "{ODBC Driver 13 for SQL Server}"
+  port: "1433",
+  pool_size: 10,
+  odbc_driver: "{ODBC Driver 17 for SQL Server}"
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

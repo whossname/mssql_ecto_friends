@@ -4,34 +4,31 @@ defmodule Friends.Mixfile do
   def project do
     [
       app: :friends,
-      version: "0.1.0",
-      elixir: "~> 1.6",
-      start_permanent: Mix.env == :prod,
+      version: "0.2.0",
+      elixir: "~> 1.9",
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases()
-   ]
+    ]
   end
 
   def application do
     [
-      applications: [:logger, :ecto, :postgrex, :mssqlex, :mssql_ecto],
+      applications: [:logger, :ecto, :mssqlex, :mssql_ecto],
       mod: {Friends, []}
-   ]
+    ]
   end
 
   defp aliases do
     [
-      test: ["ecto.create", "ecto.migrate", "test"],
+      test: ["test"],
       setup: ["ecto.create", "ecto.migrate", "seed"]
     ]
   end
 
   defp deps do
     [
-      {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.1.0"},
-      {:mssql_ecto, "~> 1.0.0"},
-      {:mssqlex, "~> 1.0.0"}
+      {:mssql_ecto, git: "https://github.com/whossname/mssql_ecto.git", branch: "ecto_3.0"}
     ]
   end
 end

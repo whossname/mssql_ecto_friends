@@ -5,16 +5,22 @@ defmodule Mix.Tasks.Seed do
 
   # @shortdoc "Seed the database with fake data."
   def run(_) do
-    Mix.Task.run "app.start", []
-    seed(Mix.env)
+    Mix.Task.run("app.start", [])
+    seed(Mix.env())
   end
 
   def seed(:dev) do
-    Mix.shell.info "Seeding Database"
-    Friends.Repo.delete_all(Friends.Person)
-    Friends.Repo.insert! %Friends.Person{first_name: "José", last_name: "Valim", age: 31}
-    Friends.Repo.insert! %Friends.Person{first_name: "Chris", last_name: "McCord", age: 30}
-    Friends.Repo.insert! %Friends.Person{first_name: "Chase", last_name: "Pursley", age: 33}
+    Mix.shell().info("Seeding Database")
+
+    friends = Friends.Repo.all(Friends.Person)
+
+    if friends != [] do
+      Friends.Repo.delete_all(Friends.Person)
+    end
+
+    Friends.Repo.insert!(%Friends.Person{first_name: "José", last_name: "Valim", age: 31})
+    Friends.Repo.insert!(%Friends.Person{first_name: "Chris", last_name: "McCord", age: 30})
+    Friends.Repo.insert!(%Friends.Person{first_name: "Chase", last_name: "Pursley", age: 33})
   end
 
   def seed(:prod) do
